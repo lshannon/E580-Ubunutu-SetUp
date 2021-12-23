@@ -36,6 +36,13 @@ cp STS.desktop ~/Desktop
 
 echo "Right click on STS.desktop on the desktop and enable launching"
 
+#Get Postgres
+sudo apt install postgresql postgresql-contrib
+
+echo "https://wiki.crowncloud.net/?How_To_Install_PostgreSQL_on_Ubuntu_21_04"
+
+echo "https://dbeaver.io/download/"
+
 #Set for video place
 sudo apt install ubuntu-restricted-extras
 
