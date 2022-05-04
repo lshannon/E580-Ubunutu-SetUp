@@ -1,5 +1,5 @@
 #!/bin/bash
-# Source found at: https://github.com/lshannon/E580-Ubunutu-SetUp
+# Source found at: https://github.com/lshannon/Ubunutu-Java-Dev-SetUp
 
 #check if this is running as sudo
 if [ "$EUID" -ne 0 ]
