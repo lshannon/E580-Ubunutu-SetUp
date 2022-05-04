@@ -1,8 +1,16 @@
 #!/bin/bash
 # Source found at: https://github.com/lshannon/E580-Ubunutu-SetUp
 
-USERNAME="$(whoami)"
-echo "It looks like your username is $USERNAME, folders and tools will be copied to this folder? (Type 'Y' to proceed)"
+#check if this is running as sudo
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as sudo"
+  exit
+fi
+
+echo "What is the username you will be doing Java development with?"
+read USERNAME
+
+echo "You have provided: '$USERNAME', folders and tools will be copied/created under: '/home/$USERNAME'? (Type 'Y' to proceed)"
 read CONFIRMATION
 if [ "$CONFIRMATION" != "Y" ]; then
   echo "Terminating the program"
