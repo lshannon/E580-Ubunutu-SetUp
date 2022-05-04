@@ -14,7 +14,7 @@ curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 #install Java with SDK man
-sdk install java 11.0.11.j9
+sdk install java 17.0.2-oracle
 
 #install Maven with SDK man
 sdk install maven
