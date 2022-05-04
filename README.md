@@ -39,6 +39,4 @@ ssh-add ~/.ssh/id_ed25519
 Follow these directions to complete setting up the new SSH key in Github:
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
-  
-## Notes
 
