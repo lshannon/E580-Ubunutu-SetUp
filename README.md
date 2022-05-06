@@ -26,17 +26,6 @@ The script will need to run as sudo, however it will prompt you for your usernam
 sudo ./setup-java-dev.sh
   
 ```
-  
-## Setting Up SSH
+## Disclaimer
 
-```shell
-
-ssh-keygen -t ed25519 -C "your_email@example.com"ssh-keygen -t ed25519 -C "your_email@example.com"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-
-```
-Follow these directions to complete setting up the new SSH key in Github:
-
-https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
-
+This will download, create and install things on your Ubuntu system. Refer the script before running, use at your own risk.
