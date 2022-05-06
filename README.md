@@ -1,4 +1,4 @@
-# Ubunutu 20.01 Java Developer SetUp
+# Ubunutu 20.04 Java Developer SetUp
 
 In the past, more than once I have had to rebuild a Ubuntu machine due to an issue with the OS that have occured while using the machine. Most of these issues seemed to be caused with disk corruption following an incorrect shutdown (ie: laptop running out of battery).
 
