@@ -9,11 +9,11 @@ This script is designed to run on a new Ubuntu machine and set up the Java Dev t
 This sets up:
 
 - SDKman
-- STS 4.14.1 (https://spring.io/tools)
+- STS 4.14.1 (https://spring.io/tools) **optional
 - Java 17
 - Maven (lastest)
 - Node v0.39.1 (https://github.com/nvm-sh/nvm#installing-and-updating)
-- Visual Studio Code (text editing)
+- Visual Studio Code
 
 ## Before Running The Script
 
