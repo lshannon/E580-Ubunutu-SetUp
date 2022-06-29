@@ -20,6 +20,13 @@ This sets up:
 The script will need to run as sudo, however it will prompt you for your username as all the tools and config will be set up under your account
   
 ## Usage
+
+Get the file
+```shell
+
+wget https://raw.githubusercontent.com/lshannon/Ubunutu-Java-Dev-SetUp/main/setup-java-dev.sh
+
+```
   
 ```shell
   
