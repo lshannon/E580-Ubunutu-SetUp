@@ -14,7 +14,6 @@ echo "Maven (lastest - via SDKman)"
 echo "Node v0.39.1 (https://github.com/nvm-sh/nvm#installing-and-updating)"
 echo "Visual Studio Code (text editing)"
 echo "Docker - https://docs.docker.com/engine/install/ubuntu/"
-echo ""
 echo $DIVIDER
 echo "https://github.com/lshannon/Ubunutu-Java-Dev-SetUp"
 echo $DIVIDER
@@ -32,23 +31,6 @@ if [ "$EUID" -ne 0 ]
   then echo "This script needs to run as sudo. Please re-execute as sudo"
   exit
 fi
-
-# Execute Set Up
-collect_username
-create_folders
-update_curl
-download_sdk_man
-install_java
-install_mvn
-install_nvm
-install_vscode
-install_github
-install_sts
-install_postgres
-install_docker
-setup_video_extras
-setup_github
-post_installation_tips
 
 # All Set Up Logic
 
@@ -249,4 +231,21 @@ post_installation_tips() {
   echo ""
   echo "Happy Coding My Friend! Have An Awesome Day! :-)"
 }
+
+# Execute Set Up
+collect_username
+create_folders
+update_curl
+download_sdk_man
+install_java
+install_mvn
+install_nvm
+install_vscode
+install_github
+install_sts
+install_postgres
+install_docker
+setup_video_extras
+setup_github
+post_installation_tips
 
