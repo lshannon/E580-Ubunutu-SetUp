@@ -1,7 +1,7 @@
 #!/bin/bash
 # Source found at: https://github.com/lshannon/Ubunutu-Java-Dev-SetUp
 
-DIVIDER=$DIVIDER
+DIVIDER=***********************************************************
 
 echo $DIVIDER
 echo "This script will set up the following: "
@@ -19,7 +19,8 @@ echo "https://github.com/lshannon/Ubunutu-Java-Dev-SetUp"
 echo $DIVIDER
 
 # Verify this is good before proceeding
-echo "Are good to continue? (Type 'Y' to proceed)"
+echo "Are good to continue? (Type 'Y' to proceed):"
+echo $DIVIDER
 read CONFIRMATION
 if [ "$CONFIRMATION" != "Y" ]; then
   echo "Terminating the program - have a good one!"
@@ -32,11 +33,32 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-# All Set Up Logic
+# All the installations and configuations in functions
+
+confirm() {
+  read -r -p "${1:-Do you want to proceed? [y/N]} " response
+  case "$response" in
+    [yY][eE][sS][yY])
+      true
+      ;;
+     *)
+      false
+      ;;
+   esac
+}
+
+update_vi() {
+  echo $DIVIDER
+  echo "Removing the limited vim-tiny"
+  sudo apt remove --assume-yes vim-tiny
+  echo "Installing a more robust vim"
+  sudo apt install --assume-yes vim
+  echo $DIVIDER
+}
 
 collect_username() {
   echo $DIVIDER
-  echo "What is the username you will be doing Java development with? This will be used to determine where to create folders and copy resources too"
+  echo "What is the username you will be doing Java development with? This will be used to determine where to create folders and copy resources too:"
   echo $DIVIDER
   read USERNAME
 
@@ -79,7 +101,7 @@ download_sdk_man() {
   echo $DIVIDER
   #install SDK Man
   curl -s "https://get.sdkman.io" | bash
-  source "/home/$USERNAME/.sdkman/bin/sdkman-init.sh"
+  source "/root/.sdkman/bin/sdkman-init.sh"
   echo $DIVIDER
   echo ""
 }
@@ -165,6 +187,7 @@ install_postgres() {
   echo $DIVIDER
   #Get Postgres
   sudo apt install postgresql postgresql-contrib
+  echo $DIVIDER
   echo "For more information about Postgres setup: https://wiki.crowncloud.net/?How_To_Install_PostgreSQL_on_Ubuntu_21_04"
   echo "For a great tool to work with Postgres: https://dbeaver.io/download/"
   echo $DIVIDER
@@ -210,8 +233,8 @@ setup_github() {
   echo "What is the email address you use for Github? This will be used to create your SSH Key for Github (https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)"
   read EMAIL
   echo "You have provided: '$EMAIL' (Type 'Y' to proceed)"
-  read $EMAIL
-  if [ "$EMAIL" -eq "Y" ]; then
+  read CONFIRM
+  if [ "$CONFIRM" -eq "Y" ]; then
     ssh-keygen -t ed25519 -C "$EMAIL"ssh-keygen -t ed25519 -C "$EMAIL"
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_ed25519
@@ -220,6 +243,8 @@ setup_github() {
     echo "Github Set Up:"
     echo "Run git config --global --edit"
     echo $DIVIDER
+  else
+    "You can follow the steps from the link to set this up later"
   fi
 }
 
@@ -233,13 +258,40 @@ post_installation_tips() {
 }
 
 # Execute Set Up
+
+# Get the username to figure out where to create folders and download too
 collect_username
-create_folders
-update_curl
-download_sdk_man
-install_java
-install_mvn
+
+# Set up folders
+echo 'Would you like to create the folders?'
+confirm && create_folders || echo 'Skipping creating the folders'
+
+# Upgrade vi
+echo 'Would you like to upgrade vi?'
+confirm && update_vi || echo 'Skipping upgrade of vi'
+
+# Upgrade curl
+echo 'Would you like to upgrade curl?'
+confirm && update_curl || echo 'Skipping upgrade of curl'
+
+# Download SDK Man
+echo 'Would you like to set up SDK Man'
+confirm && download_sdk_man || echo 'Skipping installing of SKD man'
+
+# Install Java
+echo 'Would you like to use SDK Man to install Java? Note: If you didn't install SDK Man, this will fail'
+confirm && install_java || echo 'Skip installing Java'
+
+# Install Maven
+echo 'Would you like to use SDK Man to install Maven? Note: If you didn't install SDK Man, this will fail'
+confirm && install_mvn || echo 'Skiping installing Maven'
+
+# Install NVM
+echo 'Would you like to use SDK Man to install NVM? Note: If you didn't install SDK Man, this will fail'
 install_nvm
+
+# Install VS Code
+echo 'Would you like to install VS Code Note?'
 install_vscode
 install_github
 install_sts
